@@ -4,7 +4,7 @@ import 'package:first_lesson/forgot_page.dart';
 import 'package:first_lesson/home_page.dart';
 import 'package:first_lesson/register_now.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
+// import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -127,41 +127,35 @@ class LoginState extends State<LoginPage> {
 
             SizedBox(height: 10),
 
-            // button sign in
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
-              child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomePage()));
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.green[800],
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Text(
-                    "Sing in",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 10,
-                    ),
-                  ),
-                ),
+            ElevatedButton(
+              style: ButtonStyle(
+                padding: MaterialStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 50)),
+                backgroundColor: MaterialStatePropertyAll(Colors.green[800]),
               ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              child: Text('Sing in'),
             ),
 
-            // Text(
-            //   "Sign in",
-            //   style: TextStyle(
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 15,
+            // button sign in
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 30),
+            //   child: ElevatedButton(
+            //     style: ButtonStyle(
+            //         const EdgeInsets.symmetric(horizontal: 30)
+            //         backgroundColor:
+            //             MaterialStatePropertyAll(Colors.green[800]),
+            //             ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) => const HomePage()));
+            //     },
+            //     child: Text('Sing in'),
             //   ),
             // ),
 
