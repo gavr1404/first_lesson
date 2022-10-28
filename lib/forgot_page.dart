@@ -1,3 +1,5 @@
+// ignore_for_file: empty_statements
+
 import 'package:first_lesson/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -32,10 +34,8 @@ class ForgotState extends State<ForgotPassword> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
                 },
                 child: Text('Повернутися'),
               ),

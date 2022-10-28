@@ -3,8 +3,8 @@
 import 'package:first_lesson/forgot_page.dart';
 import 'package:first_lesson/home_page.dart';
 import 'package:first_lesson/register_now.dart';
+import 'package:first_lesson/splash_screen.dart';
 import 'package:flutter/material.dart';
-// import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +15,10 @@ class LoginPage extends StatefulWidget {
 
 class LoginState extends State<LoginPage> {
   bool isRememberMe = false;
+  final myLogin = TextEditingController();
+  final myPassword = TextEditingController();
+  String login = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +66,7 @@ class LoginState extends State<LoginPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: TextField(
+                    controller: myLogin,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'login',
@@ -84,6 +89,7 @@ class LoginState extends State<LoginPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: TextField(
+                    controller: myPassword,
                     obscureText: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -99,34 +105,33 @@ class LoginState extends State<LoginPage> {
             // remember my
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Container(
-                child: Row(children: [
-                  Theme(
-                    data: ThemeData(unselectedWidgetColor: Colors.white),
-                    child: Checkbox(
-                      value: isRememberMe,
-                      checkColor: Colors.green,
-                      activeColor: Colors.white,
-                      onChanged: (value) {
-                        setState(() {
-                          isRememberMe = value!;
-                        });
-                      },
-                    ),
+              child: Row(children: [
+                Theme(
+                  data: ThemeData(unselectedWidgetColor: Colors.white),
+                  child: Checkbox(
+                    value: isRememberMe,
+                    checkColor: Colors.green,
+                    activeColor: Colors.white,
+                    onChanged: (value) {
+                      setState(() {
+                        isRememberMe = value!;
+                      });
+                    },
                   ),
-                  Text(
-                    'Remember me',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
-              ),
+                ),
+                Text(
+                  'Remember me',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ]),
             ),
 
             SizedBox(height: 10),
 
+            // Button sing in
             ElevatedButton(
               style: ButtonStyle(
                 padding: MaterialStatePropertyAll(
@@ -134,35 +139,46 @@ class LoginState extends State<LoginPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.green[800]),
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                login = myLogin.text;
+                password = myPassword.text;
+                if (login == 'admin' && password == '123456') {
+                  if (isRememberMe) {
+                    TrueLogin = true;
+                  }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return SimpleDialog(
+                        backgroundColor: Colors.green[500],
+                        children: const [
+                          Center(
+                            child: Text(
+                              'невірно вказаний логін або пароль\n admin 123456 ',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
               child: Text('Sing in'),
             ),
-
-            // button sign in
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: ElevatedButton(
-            //     style: ButtonStyle(
-            //         const EdgeInsets.symmetric(horizontal: 30)
-            //         backgroundColor:
-            //             MaterialStatePropertyAll(Colors.green[800]),
-            //             ),
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) => const HomePage()));
-            //     },
-            //     child: Text('Sing in'),
-            //   ),
-            // ),
 
             SizedBox(height: 20),
 
             //register new member
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 30),
@@ -177,7 +193,7 @@ class LoginState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 150),
+                  padding: EdgeInsets.only(right: 30),
                   child: TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -197,7 +213,4 @@ class LoginState extends State<LoginPage> {
       ),
     );
   }
-
-  // bool isRememberMe = false;
-
 }

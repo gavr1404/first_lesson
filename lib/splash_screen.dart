@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'package:first_lesson/home_page.dart';
 import 'package:first_lesson/login_page.dart';
 import 'package:flutter/material.dart';
+
+bool TrueLogin = false;
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -12,8 +15,12 @@ class Splash extends StatefulWidget {
 class SplashState extends State<Splash> {
   splashScreenTimer() {
     Timer(const Duration(seconds: 3), () {
+      if (TrueLogin) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      }
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
     });
   }
 
