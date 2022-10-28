@@ -3,8 +3,9 @@
 import 'package:first_lesson/forgot_page.dart';
 import 'package:first_lesson/home_page.dart';
 import 'package:first_lesson/register_now.dart';
-import 'package:first_lesson/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+bool TrueLogin = false;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:first_lesson/login_page.dart';
+import 'package:first_lesson/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,9 +36,20 @@ class HomeState extends State<HomePage> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                      MaterialPageRoute(builder: (context) => Splash()));
                 },
                 child: Text('Повернутися'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  TrueLogin = false;
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                child: Text('змінити логін'),
               ),
             ],
           ),
